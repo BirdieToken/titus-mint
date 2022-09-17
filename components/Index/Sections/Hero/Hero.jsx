@@ -2,7 +2,7 @@ import styles from './Hero.module.scss'
 import { useEffect, useState } from 'react'
 import { useMoralis } from 'react-moralis'
 import { supabase } from '../../../../utils/supabaseClient'
-import useProvider from '../../../../hooks/useProvider'
+import getProvider from '../../../../hooks/getProvider'
 
 const Hero = () => {
   const { user, isAuthenticated, enableWeb3, authenticate } = useMoralis()
@@ -21,7 +21,7 @@ const Hero = () => {
   }
 
   const get_cost = async () => {
-    const web3 = await useProvider(enableWeb3)
+    const web3 = await getProvider(enableWeb3)
     const contract = new web3.eth.Contract(JSON.parse(abi), contract_address)
     const trans = await contract.methods._cost().call()
 
@@ -29,7 +29,7 @@ const Hero = () => {
   }
 
   const get_supply = async () => {
-    const web3 = await useProvider(enableWeb3)
+    const web3 = await getProvider(enableWeb3)
     const contract = new web3.eth.Contract(JSON.parse(abi), contract_address)
     const trans = await contract.methods.totalSupply().call()
 
@@ -44,7 +44,7 @@ const Hero = () => {
   }
 
   const _mint_ = async (tokenURI) => {
-    const web3 = await useProvider(enableWeb3)
+    const web3 = await getProvider(enableWeb3)
 
     const contract = new web3.eth.Contract(JSON.parse(abi), contract_address)
     const trans = await contract.methods.mint(`${tokenURI}`).send({ from: user?.get('ethAddress'), value: cost })
