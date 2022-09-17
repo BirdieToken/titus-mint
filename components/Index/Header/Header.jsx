@@ -1,16 +1,12 @@
 import styles from './Header.module.scss'
+import { useState } from 'react'
 import { useMoralis } from 'react-moralis'
+import Provider from '../../Layout/Provider/Provider'
 
 const Header = () => {
   const { user, isAuthenticated, logout, authenticate } = useMoralis()
 
-  const sign_in_walletconnect = async() => {
-    await authenticate({
-      provider: 'walletconnect',
-      signingMessage: 'Sign in using WalletConnect.',
-      chainId: 1
-    })
-  }
+  const [provider, setProvider] = useState(false)
 
   return (
     <header className={styles.hdr}>
@@ -30,7 +26,7 @@ const Header = () => {
             </button>
             :
             <button
-              onClick={() => sign_in_walletconnect()}
+              onClick={() => setProvider(true)}
               id='btn_connect'
               className={`${styles.button} ${styles.button_blue} ${styles.button_hover} open_modal`}>
               <i id='btn-connect-icon' className='fa-solid fa-plus'></i>
@@ -39,6 +35,8 @@ const Header = () => {
           }
         </div>
       </nav>
+
+      {provider && <Provider setModal={setProvider} />}
     </header>
   )
 }

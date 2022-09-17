@@ -13,14 +13,20 @@ const getProvider = async (enableWeb3) => {
     let provider = new WalletConnectProvider({
       rpc: {
         1: endpoint,
-        // 4: 'https://rpc.ankr.com/eth_rinkeby'
       }
     })
 
     await provider.enable();
 
     return new Web3(provider)
-  } else return new Web3(new Web3.providers.HttpProvider(endpoint))
+  } else {
+    await enableWeb3({
+      provider: 'metamask',
+      chainId: 1
+    })
+    
+    return new Web3(window.ethereum)
+  }
 }
 
 export default getProvider
