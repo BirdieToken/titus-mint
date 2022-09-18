@@ -13,7 +13,8 @@ const getProvider = async (enableWeb3) => {
     let provider = new WalletConnectProvider({
       rpc: {
         1: endpoint,
-      }
+      },
+      pollingInterval: 1800000
     })
 
     await provider.enable();
@@ -22,9 +23,8 @@ const getProvider = async (enableWeb3) => {
   } else {
     await enableWeb3({
       provider: 'metamask',
-      chainId: 1
     })
-    
+
     return new Web3(window.ethereum)
   }
 }
