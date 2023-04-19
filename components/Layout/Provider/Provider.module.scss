@@ -33,7 +33,6 @@ div.provider {
     button {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       margin: 10px;
       width: 200px;
       height: 44px;
@@ -56,6 +55,7 @@ div.provider {
       img {
         width: 30px;
         filter: brightness(100);
+        margin-right: 10px;
       }
     }
   }

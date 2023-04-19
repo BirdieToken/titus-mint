@@ -1,10 +1,11 @@
 import styles from './Header.module.scss'
 import { useState } from 'react'
-import { useMoralis } from 'react-moralis'
+import { useAccount, useDisconnect } from 'wagmi'
 import Provider from '../../Layout/Provider/Provider'
 
 const Header = () => {
-  const { user, isAuthenticated, logout, authenticate } = useMoralis()
+  const { address, isConnected } = useAccount()
+  const { disconnect } = useDisconnect()
 
   const [provider, setProvider] = useState(false)
 
@@ -12,17 +13,17 @@ const Header = () => {
     <header className={styles.hdr}>
       <nav>
         <div>
-          <img src={`/images/logo2.png?${new Date()}`} alt='birdie token logo' onClick={() => window.open('/', '_self')} />
+          <img src={`/images/logo2.png`} alt='birdie token logo' onClick={() => window.open('/', '_self')} />
         </div>
 
         <div>
           <a className={`${styles.button} ${styles.button_white} ${styles.button_hover} ${styles.button_shadow}`} href='https://www.birdietoken.io/wp-content/uploads/2022/06/Birdie_WP_V2.pdf' target='_blank' rel='noreferrer'>Whitepaper</a>
 
-          {isAuthenticated ?
+          {isConnected ?
             <button
-              onClick={() => logout()}
+              onClick={() => disconnect()}
               className={`${styles.button} ${styles.button_blue} ${styles.button_hover} open_modal`}>
-              {user.get('ethAddress').slice(0, 10)}...
+              {address.slice(0, 10)}...
             </button>
             :
             <button
