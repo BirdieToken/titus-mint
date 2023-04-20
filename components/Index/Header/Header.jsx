@@ -23,7 +23,7 @@ const Header = () => {
             <button
               onClick={() => disconnect()}
               className={`${styles.button} ${styles.button_blue} ${styles.button_hover} open_modal`}>
-              {address.slice(0, 10)}...
+              {address.slice(0, 10)}
             </button>
             :
             <button

@@ -36,20 +36,7 @@ const Hero = () => {
     },
   })
 
-  const { data, isLoading, isSuccess, write } = useContractWrite({
-    ...config, onSuccess: async () => {
-      await supabase
-        .from('titus_minted')
-        .update({ status: true })
-        .match({ titus_id: randomNumber })
-    },
-    onError: async () => {
-      await supabase
-        .from('titus_minted')
-        .update({ status: false })
-        .match({ titus_id: randomNumber })
-    }
-  })
+  const { data, isLoading, isSuccess, writeAsync } = useContractWrite({ ...config })
 
   // Minting
   const get_random_int = (min, max) => {
@@ -57,12 +44,6 @@ const Hero = () => {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
-
-  // const _mint_ = async (tokenURI) => {
-  //   const contract = new web3.eth.Contract(JSON.parse(abi), contract_address)
-  //   const trans = await contract.methods.mint(`${tokenURI}`).send({ from: address, value: cost })
-  //   console.log(trans)
-  // }
 
   const get_random = async () => {
     const min = 1, max = 1818
@@ -84,12 +65,35 @@ const Hero = () => {
         .match({ titus_id: rand_number })
     }
 
-    await supabase
-      .from('titus_minted')
-      .insert({ titus_id: rand_number })
-
     console.log(rand_number)
     setRandomNumber(rand_number)
+  }
+
+
+  // const mint = async () => {
+  //   console.log(rpc_provider)
+  //   const web3 = new Web3(rpc_provider)
+
+  //   try {
+  //     const contract = new web3.eth.Contract(JSON.parse(abi), contract_address)
+  //     const trans = await contract.methods.mint(`${randomNumber}`).send({ from: address, value: cost })
+  //     console.log(trans)
+
+  //     await supabase.from('titus_minted').insert({ titus_id: randomNumber, status: true })
+  //   } catch (error) {
+  //     console.log(error)
+  //     await supabase.from('titus_minted').update({ status: false }).match({ titus_id: randomNumber })
+  //   }
+  // }
+
+  const mint = async () => {
+    try {
+      await writeAsync?.()
+
+      await supabase.from('titus_minted').insert({ titus_id: randomNumber, status: true })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
@@ -108,7 +112,7 @@ const Hero = () => {
           <h3>Price: <span>{cost / 10 ** 18}</span> ETH</h3>
 
           {isConnected ?
-            <button id="btn-buy" className={styles.poppins} disabled={!write} onClick={() => write?.()}>
+            <button id="btn-buy" className={styles.poppins} onClick={() => mint()}>
               Mint
             </button>
             :
