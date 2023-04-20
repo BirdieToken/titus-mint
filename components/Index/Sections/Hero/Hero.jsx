@@ -27,13 +27,16 @@ const Hero = () => {
 
   const { config } = usePrepareContractWrite({
     address: contract_address,
-    abi: abi,
+    abi: JSON.parse(abi),
     functionName: 'mint',
-    args: [randomNumber],
+    args: [`${randomNumber}`],
     overrides: {
       from: address,
       value: cost,
     },
+    onSuccess(data){
+      console.log(data)
+    }
   })
 
   const { data, isLoading, isSuccess, writeAsync } = useContractWrite({ ...config })
