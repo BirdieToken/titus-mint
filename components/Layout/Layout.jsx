@@ -6,7 +6,7 @@ const Layout = ({children}) => {
     <div className={styles.layout}>
       <Head>
         <link href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css" rel="stylesheet" />
-        <title>Birdie | Titus Mint</title>
+        <title>Birdie | VIP Pass</title>
       </Head>
       
       {children}
