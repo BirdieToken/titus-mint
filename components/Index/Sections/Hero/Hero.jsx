@@ -44,12 +44,12 @@ const Hero = () => {
   }, [account]);
 
   return (
-    <div style={{ width: "60%", margin: "auto", display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={{ width: "90%", margin: "auto", display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: "center" }}>
       <h1 style={{padding: "10px"}}>Birdie VIP Pass Claim</h1>
       <img src="/images/VIPPass.jpg" alt="Passes" style={{padding: "10px"}} width="60%"/>
       {mintAmount === 0 ? (
         <>
-          {account ? (
+          {account.address ? (
             <h3 style={{padding: "10px"}}>You do not have any passes to claim with this wallet!</h3>
           ) : (
             <h3 style={{padding: "10px"}}>Connect your wallet to claim passes</h3>
