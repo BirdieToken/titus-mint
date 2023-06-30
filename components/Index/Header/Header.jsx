@@ -13,12 +13,10 @@ const Header = () => {
     <header className={styles.hdr}>
       <nav>
         <div>
-          <img src={`/images/logo2.png`} alt='birdie token logo' onClick={() => window.open('/', '_self')} />
+          <img src={`/images/logo2.png`} alt='birdie token logo' />
         </div>
 
         <div>
-          <a className={`${styles.button} ${styles.button_white} ${styles.button_hover} ${styles.button_shadow}`} href='https://www.birdietoken.io/wp-content/uploads/2022/06/Birdie_WP_V2.pdf' target='_blank' rel='noreferrer'>Whitepaper</a>
-
           {isConnected ?
             <button
               onClick={() => disconnect()}
