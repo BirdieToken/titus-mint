@@ -1,10 +1,10 @@
 import styles from './Header.module.scss'
 import { useState } from 'react'
-import { useAccount, useDisconnect } from 'wagmi'
+//import { useAccount, useDisconnect } from 'wagmi'
 import Provider from '../../Layout/Provider/Provider'
 
 const Header = () => {
-  const { address, isConnected } = useAccount()
+  /*const { address, isConnected } = useAccount()
   const { disconnect } = useDisconnect()
 
   const [provider, setProvider] = useState(false)
@@ -37,6 +37,9 @@ const Header = () => {
 
       {provider && <Provider setModal={setProvider} />}
     </header>
+  )*/
+  return(
+    <></>
   )
 }
 

@@ -1,7 +1,7 @@
-import Web3 from 'web3'
-import WalletConnectProvider from '@walletconnect/web3-provider'
+//import Web3 from 'web3'
+//import WalletConnectProvider from '@walletconnect/web3-provider'
 
-const getProvider = async (enableWeb3) => {
+/*const getProvider = async (enableWeb3) => {
   const endpoint = 'https://rpc.ankr.com/eth'
 
   if (localStorage.walletconnect) {
@@ -29,4 +29,4 @@ const getProvider = async (enableWeb3) => {
   }
 }
 
-export default getProvider
+export default getProvider*/

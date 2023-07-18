@@ -1,5 +1,5 @@
 import styles from './Provider.module.scss'
-import { useConnect } from 'wagmi'
+/*import { useConnect } from 'wagmi'
 
 const Provider = ({ setModal }) => {
   const { connect, connectors, error, isLoading, pendingConnector } =
@@ -35,6 +35,10 @@ const Provider = ({ setModal }) => {
       </div>
     </div>
   )
-}
+}*/
 
-export default Provider
+export default function Provider(){
+  return(
+    <></>
+  )
+}
