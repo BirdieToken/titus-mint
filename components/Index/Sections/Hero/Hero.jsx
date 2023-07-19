@@ -3,8 +3,6 @@ import { ethers } from 'ethers';
 import { EthereumProvider } from '@walletconnect/ethereum-provider';
 import vipABI from '../../../../utils/vipABI.json';
 
-
-
 export default function Hero() {
   const [mintAmount, setMintAmount] = useState(0);
   const [address, setAddress] = useState(null);
@@ -14,7 +12,7 @@ export default function Hero() {
   useEffect(() => {
     const getWC = async () => {
       const walletCon = await EthereumProvider.init({
-        projectId: "f33f9e6d0d9ef1215999d1788af0790c",
+        projectId: process.env.WalletConnect_Project_ID,
         chains: [1],
         optionalMethods: ["eth_signTypedData", "eth_signTypedData_v4", "personal_ecRecover","eth_sendTransaction", "personal_sign"],
         optionalEvents: ["chainChanged", "accountsChanged"],
