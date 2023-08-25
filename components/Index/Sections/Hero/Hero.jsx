@@ -12,7 +12,7 @@ export default function Hero() {
   useEffect(() => {
     const getWC = async () => {
       const walletCon = await EthereumProvider.init({
-        projectId: process.env.NEXT_PUBLIC_WalletConnect_Project_ID,
+        projectId: "85163bdc29815f0b5580808514e9cdc6",
         chains: [1],
         optionalMethods: ["eth_signTypedData", "eth_signTypedData_v4", "personal_ecRecover","eth_sendTransaction", "personal_sign"],
         optionalEvents: ["chainChanged", "accountsChanged"],
